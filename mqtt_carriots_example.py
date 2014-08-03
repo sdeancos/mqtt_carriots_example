@@ -30,6 +30,7 @@ class CarriotsMqttClient():
 
 if __name__ == '__main__':
     auth = {'username': 'YOUR_APIKEY_HERE', 'password': ''}
+    # You must download ca_certs.crt from https://www.carriots.com/tls/ca_certs.crt for use TLSv1
     tls_dict = {'ca_certs': 'ca_certs.crt', 'tls_version': PROTOCOL_TLSv1}
     msg_dict = {'protocol': 'v2', 'device': 'YOUR_ID_DEVELOPER_DEVICE_HERE', 'at': 'now', 'data': {'key': 'value'}}
     client_mqtt = CarriotsMqttClient(auth=auth)                     # non ssl version
