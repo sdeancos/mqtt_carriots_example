@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Client paho-mqtt CarriotsMqttServer
-# main.py
+# mqtt_carriots_example.py
 import paho.mqtt.publish as publish
 from json import dumps
 from ssl import PROTOCOL_TLSv1
@@ -10,9 +10,6 @@ from ssl import PROTOCOL_TLSv1
 class CarriotsMqttClient():
     host = 'mqtt.carriots.com'
     port = '1883'
-    auth = {}
-    topic = '%s/streams'
-    tls = None
 
     def __init__(self, auth, tls=None):
         self.auth = auth
@@ -23,7 +20,14 @@ class CarriotsMqttClient():
 
     def publish(self, msg):
         try:
-            publish.single(topic=self.topic, payload=msg, hostname=self.host, auth=self.auth, tls=self.tls, port=self.port)
+            publish.single(
+                topic=self.topic, 
+                payload=msg, 
+                hostname=CarriotsMqttClient.host, 
+                auth=self.auth, 
+                tls=self.tls, 
+                port=CarriotsMqttClient.port
+            )
         except Exception, ex:
             print ex
 
